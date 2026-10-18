@@ -740,6 +740,10 @@ texture = ExtResource("17_kq1c5")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ornx7")
 
+[sub_resource type="Gradient" id="Gradient_e8dv2"]
+offsets = PackedFloat32Array(0, 0.0040983604, 0.012295082, 0.99590164)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0.07851243, 1, 0.07851243, 1, 0, 1, 0, 0.6156863)
+
 [node name="Node" type="Node" unique_id=401883506]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148]
@@ -771,3 +775,13 @@ scale = Vector2(10.563155, 10.9445)
 texture = ExtResource("19_rjqkl")
 script = ExtResource("19_fs4d3")
 hrac = NodePath("../Player")
+
+[node name="RayCast2D" type="RayCast2D" parent="Sprite2D" unique_id=1481142793]
+position = Vector2(0, 0.8223364)
+target_position = Vector2(0, 300)
+
+[node name="Line2D" type="Line2D" parent="Sprite2D" unique_id=404767415]
+points = PackedVector2Array(2.6507235, 48.152042, 0.56801224, -9.411114)
+width = 25.0
+default_color = Color(0, 1, 0, 0.21960784)
+gradient = SubResource("Gradient_e8dv2")
