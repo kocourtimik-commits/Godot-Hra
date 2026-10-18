@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://dfjh6yr0ggg2i" path="res://Kravicka/transformed-images/frame_14_delay-0.07s.png" id="15_24dk6"]
 [ext_resource type="Texture2D" uid="uid://f7wiqn63ormg" path="res://Kravicka/transformed-images/frame_15_delay-0.07s.png" id="16_mryly"]
 [ext_resource type="Texture2D" uid="uid://cpppheh0n370d" path="res://Kravicka/Light_green.png" id="17_kq1c5"]
+[ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="19_fs4d3"]
+[ext_resource type="Texture2D" uid="uid://0b72h0hn22co" path="res://MuMuSharedFolder/Pictures/pixil-frame-0 (2).png" id="19_rjqkl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
 animations = [{
@@ -761,3 +763,11 @@ zoom = Vector2(0.6, 0.6)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAD+//3/AAAEAAYAAAD9//3/AAAEAAYAAAD///3/AAAEAAYAAAAAAP3/AAAEAAYAAAABAP3/AAAEAAYAAAACAP3/AAAEAAYAAAADAP3/AAAEAAYAAAAHAPr/AAAEAAYAAAAIAPr/AAAEAAYAAAAJAPr/AAAEAAYAAAAKAPr/AAAEAAYAAAALAPr/AAAEAAYAAAAMAPr/AAAEAAYAAAAVAPr/AAAEAAYAAAAVAPv/AAAEAAYAAAAWAPv/AAAEAAYAAAAWAPz/AAAEAAYAAAAXAPz/AAAEAAYAAAAYAPz/AAAEAAYAAAAZAPz/AAAEAAYAAAAaAPz/AAAEAAYAAAAaAP3/AAAEAAYAAAAbAP3/AAAEAAYAAAAcAP3/AAAEAAYAAAAdAP3/AAAEAAYAAAAeAP3/AAAEAAYAAAAfAP3/AAAEAAYAAAAgAP3/AAAEAAYAAAAhAP3/AAAEAAYAAAAhAPz/AAAEAAYAAAAiAPz/AAAEAAYAAAAjAPz/AAAEAAYAAAAjAPv/AAAEAAYAAAAkAPv/AAAEAAYAAAAoAP7/AAAEAAYAAAApAP7/AAAEAAYAAAApAP//AAAEAAYAAAAqAP//AAAEAAYAAAArAP//AAAEAAYAAAAsAP//AAAEAAYAAAAtAP//AAAEAAYAAAAuAP//AAAEAAYAAAAvAP//AAAEAAYAAAAwAP//AAAEAAYAAAAxAP//AAAEAAYAAAAiAAMAAAAEAAYAAAAjAAMAAAAEAAYAAAAkAAMAAAAEAAYAAAAlAAMAAAAEAAYAAAAmAAMAAAAEAAYAAAAnAAMAAAAEAAYAAAA0APv/AAAEAAYAAAA1APv/AAAEAAYAAAA2APv/AAAEAAYAAAA3APv/AAAEAAYAAAA4APv/AAAEAAYAAAA5APv/AAAEAAYAAAA+AAAAAAAEAAYAAAA/AAAAAAAEAAYAAABAAAAAAAAEAAYAAABBAAAAAAAEAAYAAABCAAAAAAAEAAYAAABDAAAAAAAEAAYAAABEAAAAAAAEAAYAAABFAAAAAAAEAAYAAAA=")
 tile_set = SubResource("TileSet_063hf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]
+texture_filter = 1
+position = Vector2(45, -474.00006)
+scale = Vector2(10.563155, 10.9445)
+texture = ExtResource("19_rjqkl")
+script = ExtResource("19_fs4d3")
+hrac = NodePath("../Player")
