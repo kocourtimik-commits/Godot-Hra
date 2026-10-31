@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cpppheh0n370d" path="res://Kravicka/Light_green.png" id="17_kq1c5"]
 [ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="19_fs4d3"]
 [ext_resource type="Texture2D" uid="uid://0b72h0hn22co" path="res://MuMuSharedFolder/Pictures/pixil-frame-0 (2).png" id="19_rjqkl"]
+[ext_resource type="Texture2D" uid="uid://dx6nogbuob53j" path="res://MuMuSharedFolder/Pictures/[CITYPNG.COM]Green Spotlight Lighting FREE PNG - 1500x1500.png" id="21_7vxoj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
 animations = [{
@@ -740,10 +741,6 @@ texture = ExtResource("17_kq1c5")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ornx7")
 
-[sub_resource type="Gradient" id="Gradient_sl5n2"]
-offsets = PackedFloat32Array(0, 0.52459013, 1)
-colors = PackedColorArray(0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0)
-
 [node name="Node" type="Node" unique_id=401883506]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148]
@@ -780,9 +777,7 @@ hrac = NodePath("../Player")
 position = Vector2(2.2720485, -6.761381)
 target_position = Vector2(0, 300)
 
-[node name="Line2D" type="Line2D" parent="Sprite2D" unique_id=404767415]
-position = Vector2(0.56801176, 1.7360382)
-points = PackedVector2Array(-14.673646, 14.34511, -0.18107605, 14.256584, 15.241658, 14.162371)
-width = 50.0
-default_color = Color(0, 1, 0, 0.21960784)
-gradient = SubResource("Gradient_sl5n2")
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1447324953]
+position = Vector2(0.18933713, 19.55321)
+scale = Vector2(0.07090684, 0.0629394)
+texture = ExtResource("21_7vxoj")
