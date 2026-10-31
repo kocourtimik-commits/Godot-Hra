@@ -21,5 +21,5 @@ func _process(delta: float) -> void:
 		var pohup_x = sin(cas * 0.7) * 50.0
 		var pohup_y = sin(cas) * vyska_pohupu
 		
-		var cilova_pozice = Vector2(hrac.global_position.x + pohup_x, hrac.global_position.y - 350.0 + pohup_y)
+		var cilova_pozice = Vector2(hrac.global_position.x + pohup_x, hrac.global_position.y - 355.0 + pohup_y)
 		global_position = global_position.lerp(cilova_pozice, rychlost_dojezdu * delta)
