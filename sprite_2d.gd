@@ -16,10 +16,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if hrac:
-		# Pohyb a vznášení UFO na ose X i Y
 		cas += delta * rychlost_pohupu
 		var pohup_x = sin(cas * 0.7) * 50.0
 		var pohup_y = sin(cas) * vyska_pohupu
 		
 		var cilova_pozice = Vector2(hrac.global_position.x + pohup_x, hrac.global_position.y - 350.0 + pohup_y)
 		global_position = global_position.lerp(cilova_pozice, rychlost_dojezdu * delta)
+		 

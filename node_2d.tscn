@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="19_fs4d3"]
 [ext_resource type="Texture2D" uid="uid://0b72h0hn22co" path="res://MuMuSharedFolder/Pictures/pixil-frame-0 (2).png" id="19_rjqkl"]
 [ext_resource type="Texture2D" uid="uid://dx6nogbuob53j" path="res://MuMuSharedFolder/Pictures/[CITYPNG.COM]Green Spotlight Lighting FREE PNG - 1500x1500.png" id="21_7vxoj"]
+[ext_resource type="Texture2D" uid="uid://cmm68s1nybb2p" path="res://New Piskel (1).png" id="22_ei405"]
+[ext_resource type="Script" uid="uid://bcwfc7qoi7s8r" path="res://grass.gd" id="23_e8dv2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
 animations = [{
@@ -84,7 +86,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlhu3"]
-size = Vector2(258, 174)
+size = Vector2(274.25, 189.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ornx7"]
 texture = ExtResource("17_kq1c5")
@@ -741,6 +743,41 @@ texture = ExtResource("17_kq1c5")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ornx7")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei405"]
+atlas = ExtResource("22_ei405")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8dv2"]
+atlas = ExtResource("22_ei405")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nhjh"]
+atlas = ExtResource("22_ei405")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7qx5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei405")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8dv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nhjh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei405"]
+size = Vector2(16.363379, 3.786896)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8dv2"]
+size = Vector2(127, 21)
+
 [node name="Node" type="Node" unique_id=401883506]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148]
@@ -751,10 +788,10 @@ script = ExtResource("1_flf07")
 position = Vector2(28, -1.9999981)
 scale = Vector2(0.12272042, 0.13745333)
 sprite_frames = SubResource("SpriteFrames_qlhu3")
-animation = &"run"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1589605952]
-position = Vector2(18, -4)
+position = Vector2(30.125, 4.75)
 shape = SubResource("RectangleShape2D_qlhu3")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=871205709]
@@ -778,6 +815,28 @@ position = Vector2(2.2720485, -6.761381)
 target_position = Vector2(0, 300)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1447324953]
-position = Vector2(0.18933713, 19.55321)
+position = Vector2(1.7040366, 20.284168)
 scale = Vector2(0.07090684, 0.0629394)
 texture = ExtResource("21_7vxoj")
+
+[node name="grass" type="AnimatedSprite2D" parent="." unique_id=224067642]
+texture_filter = 1
+position = Vector2(-303, -89.99999)
+rotation = 3.1415927
+scale = Vector2(7.8574586, 7.657987)
+sprite_frames = SubResource("SpriteFrames_b7qx5")
+script = ExtResource("23_e8dv2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass" unique_id=419099525]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grass/StaticBody2D" unique_id=1294741557]
+position = Vector2(-0.09070587, 4.3745184)
+shape = SubResource("RectangleShape2D_ei405")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1679890290]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=774284076]
+position = Vector2(-303.5, -150.5)
+shape = SubResource("RectangleShape2D_e8dv2")
+
+[connection signal="body_entered" from="Area2D" to="grass" method="_on_area_2d_body_entered"]
