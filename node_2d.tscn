@@ -772,11 +772,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8dv2"]
+size = Vector2(132, 55)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ei405"]
 size = Vector2(16.363379, 3.786896)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8dv2"]
-size = Vector2(127, 21)
 
 [node name="Node" type="Node" unique_id=401883506]
 
@@ -827,16 +827,20 @@ scale = Vector2(7.8574586, 7.657987)
 sprite_frames = SubResource("SpriteFrames_b7qx5")
 script = ExtResource("23_e8dv2")
 
+[node name="Area2D" type="Area2D" parent="grass" unique_id=1679890290]
+position = Vector2(-38.562088, -11.752431)
+rotation = 3.1415925
+scale = Vector2(0.12726761, 0.13058262)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grass/Area2D" unique_id=774284076]
+position = Vector2(-301, -133.5)
+shape = SubResource("RectangleShape2D_e8dv2")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="grass" unique_id=419099525]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="grass/StaticBody2D" unique_id=1294741557]
 position = Vector2(-0.09070587, 4.3745184)
 shape = SubResource("RectangleShape2D_ei405")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1679890290]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=774284076]
-position = Vector2(-303.5, -150.5)
-shape = SubResource("RectangleShape2D_e8dv2")
-
-[connection signal="body_entered" from="Area2D" to="grass" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="grass/Area2D" to="grass" method="_on_area_2d_body_entered"]
