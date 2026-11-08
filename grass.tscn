@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://wt8wswtx51a8"]
+
+[ext_resource type="Texture2D" uid="uid://cmm68s1nybb2p" path="res://New Piskel (1).png" id="1_mw2ei"]
+[ext_resource type="Script" uid="uid://bcwfc7qoi7s8r" path="res://grass.gd" id="2_2qnaq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei405"]
+atlas = ExtResource("1_mw2ei")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8dv2"]
+atlas = ExtResource("1_mw2ei")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nhjh"]
+atlas = ExtResource("1_mw2ei")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7qx5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei405")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8dv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nhjh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8dv2"]
+size = Vector2(132, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei405"]
+size = Vector2(16.363379, 3.786896)
+
+[node name="grass" type="AnimatedSprite2D" unique_id=248336711]
+texture_filter = 1
+rotation = 3.1415927
+scale = Vector2(7.8574586, 7.657987)
+sprite_frames = SubResource("SpriteFrames_b7qx5")
+script = ExtResource("2_2qnaq")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1051906007]
+position = Vector2(-38.562088, -11.752431)
+rotation = 3.1415925
+scale = Vector2(0.12726761, 0.13058262)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2058130376]
+position = Vector2(-301, -133.5)
+shape = SubResource("RectangleShape2D_e8dv2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=760604562]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=29347220]
+position = Vector2(-0.09070587, 4.3745184)
+shape = SubResource("RectangleShape2D_ei405")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
