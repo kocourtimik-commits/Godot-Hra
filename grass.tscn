@@ -38,7 +38,7 @@ size = Vector2(132, 55)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ei405"]
 size = Vector2(16.363379, 3.786896)
 
-[node name="grass" type="AnimatedSprite2D" unique_id=248336711]
+[node name="grass" type="AnimatedSprite2D" unique_id=248336711 groups=["grass"]]
 texture_filter = 1
 rotation = 3.1415927
 scale = Vector2(7.8574586, 7.657987)
@@ -49,7 +49,6 @@ script = ExtResource("2_2qnaq")
 position = Vector2(-38.562088, -11.752431)
 rotation = 3.1415925
 scale = Vector2(0.12726761, 0.13058262)
-collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2058130376]
 position = Vector2(-301, -133.5)

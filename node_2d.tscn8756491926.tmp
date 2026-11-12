@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://4pqund3nukl7"]
+
+[ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_flf07"]
+[ext_resource type="Texture2D" uid="uid://fg80hytdpqm7" path="res://Kravicka/transformed-images/frame_01_delay-0.07s.png" id="2_k73cj"]
+[ext_resource type="Texture2D" uid="uid://cjw21e6ny7dm1" path="res://Kravicka/pngkey.com-cow-png-152411 (1).png" id="2_rjqkl"]
+[ext_resource type="Texture2D" uid="uid://bpy4mje0hlis1" path="res://Kravicka/transformed-images/frame_02_delay-0.07s.png" id="3_rjqkl"]
+[ext_resource type="Texture2D" uid="uid://ch1t2s0e18kuc" path="res://Kravicka/transformed-images/frame_03_delay-0.07s.png" id="4_fs4d3"]
+[ext_resource type="Texture2D" uid="uid://cf5ldt11io47t" path="res://Kravicka/transformed-images/frame_04_delay-0.07s.png" id="5_7vxoj"]
+[ext_resource type="Texture2D" uid="uid://67kv7fc7u8cx" path="res://Kravicka/transformed-images/frame_05_delay-0.07s.png" id="6_ei405"]
+[ext_resource type="Texture2D" uid="uid://btjqmduao3hbw" path="res://Kravicka/transformed-images/frame_06_delay-0.07s.png" id="7_e8dv2"]
+[ext_resource type="Texture2D" uid="uid://duf5h5r38kpc3" path="res://Kravicka/transformed-images/frame_07_delay-0.07s.png" id="8_2nhjh"]
+[ext_resource type="Texture2D" uid="uid://d2n2mbbthxcnt" path="res://Kravicka/transformed-images/frame_08_delay-0.07s.png" id="9_bjha6"]
+[ext_resource type="Texture2D" uid="uid://mxxpulofpn80" path="res://Kravicka/transformed-images/frame_09_delay-0.07s.png" id="10_gt76g"]
+[ext_resource type="Texture2D" uid="uid://rp0bekbvc5dr" path="res://Kravicka/transformed-images/frame_10_delay-0.07s.png" id="11_1fr6y"]
+[ext_resource type="Texture2D" uid="uid://t45hoqdk6tut" path="res://Kravicka/transformed-images/frame_11_delay-0.07s.png" id="12_2hxjc"]
+[ext_resource type="Texture2D" uid="uid://tedalcnnl3ht" path="res://Kravicka/transformed-images/frame_12_delay-0.07s.png" id="13_ebxd8"]
+[ext_resource type="Texture2D" uid="uid://blxxq7qkccoyk" path="res://Kravicka/transformed-images/frame_13_delay-0.07s.png" id="14_2u7jv"]
+[ext_resource type="Texture2D" uid="uid://dfjh6yr0ggg2i" path="res://Kravicka/transformed-images/frame_14_delay-0.07s.png" id="15_24dk6"]
+[ext_resource type="Texture2D" uid="uid://f7wiqn63ormg" path="res://Kravicka/transformed-images/frame_15_delay-0.07s.png" id="16_mryly"]
+[ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="19_fs4d3"]
+[ext_resource type="Texture2D" uid="uid://0b72h0hn22co" path="res://MuMuSharedFolder/Pictures/pixil-frame-0 (2).png" id="19_rjqkl"]
+[ext_resource type="Texture2D" uid="uid://dx6nogbuob53j" path="res://MuMuSharedFolder/Pictures/[CITYPNG.COM]Green Spotlight Lighting FREE PNG - 1500x1500.png" id="21_7vxoj"]
+[ext_resource type="PackedScene" uid="uid://wt8wswtx51a8" path="res://grass.tscn" id="22_ei405"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rjqkl")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k73cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjqkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fs4d3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7vxoj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ei405")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_e8dv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2nhjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bjha6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gt76g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1fr6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2hxjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ebxd8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2u7jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_24dk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_mryly")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlhu3"]
+size = Vector2(274.25, 189.5)
+
+[node name="Node" type="Node" unique_id=401883506]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148]
+script = ExtResource("1_flf07")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1115214559]
+position = Vector2(28, -1.9999981)
+scale = Vector2(0.12272042, 0.13745333)
+sprite_frames = SubResource("SpriteFrames_qlhu3")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1589605952]
+position = Vector2(30.125, 4.75)
+shape = SubResource("RectangleShape2D_qlhu3")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=871205709]
+zoom = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]
+texture_filter = 1
+position = Vector2(45, -474.00006)
+scale = Vector2(10.563155, 10.9445)
+texture = ExtResource("19_rjqkl")
+script = ExtResource("19_fs4d3")
+hrac = NodePath("../Player")
+
+[node name="RayCast2D" type="RayCast2D" parent="Sprite2D" unique_id=1481142793]
+position = Vector2(2.2720485, -6.761381)
+target_position = Vector2(0, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1447324953]
+position = Vector2(1.7040366, 20.284168)
+scale = Vector2(0.07090684, 0.0629394)
+texture = ExtResource("21_7vxoj")
+
+[node name="grass" parent="." unique_id=248336711 instance=ExtResource("22_ei405")]
+position = Vector2(-342, -94.99999)
+
+[node name="grass3" parent="." unique_id=1670714672 instance=ExtResource("22_ei405")]
+position = Vector2(-466, -102)
+
+[node name="grass2" parent="." unique_id=2070013979 instance=ExtResource("22_ei405")]
+position = Vector2(-207.00002, -95.99999)
+
+[node name="grass4" parent="." unique_id=1490380514 instance=ExtResource("22_ei405")]
+position = Vector2(-76, -97)
+
+[node name="grass5" parent="." unique_id=618664224 instance=ExtResource("22_ei405")]
+position = Vector2(41.999996, -97.00001)
+
+[node name="grass6" parent="." unique_id=221027836 instance=ExtResource("22_ei405")]
+position = Vector2(174, -96.99999)
+
+[node name="grass7" parent="." unique_id=344734739 instance=ExtResource("22_ei405")]
+position = Vector2(1401, -134)
+
+[node name="grass15" parent="." unique_id=1410005896 instance=ExtResource("22_ei405")]
+position = Vector2(1513, -133.99998)
+
+[node name="grass16" parent="." unique_id=645797456 instance=ExtResource("22_ei405")]
+position = Vector2(1626, -133.99998)
+
+[node name="grass17" parent="." unique_id=815909724 instance=ExtResource("22_ei405")]
+position = Vector2(1738, -164)
+
+[node name="grass18" parent="." unique_id=2055463911 instance=ExtResource("22_ei405")]
+position = Vector2(1682, 145)
+
+[node name="grass19" parent="." unique_id=976060436 instance=ExtResource("22_ei405")]
+position = Vector2(1798, 165.99998)
+
+[node name="grass20" parent="." unique_id=1557441467 instance=ExtResource("22_ei405")]
+position = Vector2(1917, 185)
+
+[node name="grass21" parent="." unique_id=1046108732 instance=ExtResource("22_ei405")]
+position = Vector2(2020, 206)
+
+[node name="grass8" parent="." unique_id=2038276972 instance=ExtResource("22_ei405")]
+position = Vector2(1001, -237)
+
+[node name="grass12" parent="." unique_id=560395023 instance=ExtResource("22_ei405")]
+position = Vector2(1095, -191)
+
+[node name="grass13" parent="." unique_id=1694333155 instance=ExtResource("22_ei405")]
+position = Vector2(1184, -140.00002)
+
+[node name="grass14" parent="." unique_id=940882627 instance=ExtResource("22_ei405")]
+position = Vector2(1295, -133)
+
+[node name="grass9" parent="." unique_id=2055160622 instance=ExtResource("22_ei405")]
+position = Vector2(591, -238)
+
+[node name="grass10" parent="." unique_id=1601680353 instance=ExtResource("22_ei405")]
+position = Vector2(497, -238)
+
+[node name="grass11" parent="." unique_id=1093293322 instance=ExtResource("22_ei405")]
+position = Vector2(386, -231)

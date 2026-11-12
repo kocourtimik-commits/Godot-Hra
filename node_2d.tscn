@@ -90,12 +90,6 @@ size = Vector2(274.25, 189.5)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148]
 script = ExtResource("1_flf07")
-up_smer = null
-prilehani = null
-auto_step_enabled = null
-step_height = null
-step_probe = null
-step_cooldown = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1115214559]
 position = Vector2(28, -1.9999981)
@@ -140,10 +134,10 @@ position = Vector2(-207.00002, -95.99999)
 position = Vector2(-76, -97)
 
 [node name="grass5" parent="." unique_id=618664224 instance=ExtResource("22_ei405")]
-position = Vector2(40, -99)
+position = Vector2(41.999996, -97.00001)
 
 [node name="grass6" parent="." unique_id=221027836 instance=ExtResource("22_ei405")]
-position = Vector2(166, -96)
+position = Vector2(174, -96.99999)
 
 [node name="grass7" parent="." unique_id=344734739 instance=ExtResource("22_ei405")]
 position = Vector2(1401, -134)
@@ -158,16 +152,16 @@ position = Vector2(1626, -133.99998)
 position = Vector2(1738, -164)
 
 [node name="grass18" parent="." unique_id=2055463911 instance=ExtResource("22_ei405")]
-position = Vector2(1680, 205)
+position = Vector2(1682, 145)
 
 [node name="grass19" parent="." unique_id=976060436 instance=ExtResource("22_ei405")]
-position = Vector2(1800, 206)
+position = Vector2(1798, 165.99998)
 
 [node name="grass20" parent="." unique_id=1557441467 instance=ExtResource("22_ei405")]
-position = Vector2(1918, 204.99998)
+position = Vector2(1917, 185)
 
 [node name="grass21" parent="." unique_id=1046108732 instance=ExtResource("22_ei405")]
-position = Vector2(1918, 204.99998)
+position = Vector2(2020, 206)
 
 [node name="grass8" parent="." unique_id=2038276972 instance=ExtResource("22_ei405")]
 position = Vector2(1001, -237)
