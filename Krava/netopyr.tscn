@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ck3l8g3b3e1iq"]
+
+[ext_resource type="Script" uid="uid://bb8uks3je4d4c" path="res://Krava/netopyr.gd" id="1_qpeio"]
+
+[node name="Netopyr" type="Node2D" unique_id=448176139]
+script = ExtResource("1_qpeio")
+
+[node name="text" type="Label" parent="." unique_id=2144418537]
+offset_right = 40.0
+offset_bottom = 23.0

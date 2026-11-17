@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://byhy6ws6ryg44"]
+
+[ext_resource type="Script" uid="uid://52kseu2f0chf" path="res://mleko.gd" id="1_7ax83"]
+[ext_resource type="Texture2D" uid="uid://bbvlpvmlnsxa3" path="res://Kravicka/images (2).jpg" id="2_bcgur"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8dv2"]
+size = Vector2(148, 347)
+
+[node name="Mleko" type="CharacterBody2D" unique_id=43459954]
+script = ExtResource("1_7ax83")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=418393788]
+rotation = -3.1415925
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_bcgur")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=627526017]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_e8dv2")

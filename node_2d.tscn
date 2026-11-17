@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://dx6nogbuob53j" path="res://MuMuSharedFolder/Pictures/[CITYPNG.COM]Green Spotlight Lighting FREE PNG - 1500x1500.png" id="21_7vxoj"]
 [ext_resource type="Script" uid="uid://bjjxbbyxyanbv" path="res://death_zone.gd" id="22_e8dv2"]
 [ext_resource type="PackedScene" uid="uid://wt8wswtx51a8" path="res://grass.tscn" id="22_ei405"]
+[ext_resource type="Texture2D" uid="uid://lsbh0q0q8060" path="res://Kravicka/New Piskel (3).png" id="23_e8dv2"]
+[ext_resource type="PackedScene" uid="uid://ck3l8g3b3e1iq" path="res://Krava/netopyr.tscn" id="24_2nhjh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
 animations = [{
@@ -92,6 +94,18 @@ size = Vector2(4306, 20)
 
 [node name="Node" type="Node" unique_id=401883506]
 
+[node name="pozadi2" type="Sprite2D" parent="." unique_id=1944341591]
+texture_filter = 1
+position = Vector2(815.0001, 134)
+scale = Vector2(45, 45)
+texture = ExtResource("23_e8dv2")
+
+[node name="pozadi3" type="Sprite2D" parent="." unique_id=149134209]
+texture_filter = 1
+position = Vector2(6462, 140.00002)
+scale = Vector2(45, 45)
+texture = ExtResource("23_e8dv2")
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148 groups=["player"]]
 position = Vector2(-30, 1)
 script = ExtResource("1_flf07")
@@ -108,6 +122,9 @@ shape = SubResource("RectangleShape2D_qlhu3")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=871205709]
 zoom = Vector2(0.6, 0.6)
+
+[node name="MlekoPozice" type="Marker2D" parent="Player" unique_id=1546805463]
+position = Vector2(1, -35)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]
 texture_filter = 1
@@ -275,3 +292,6 @@ position = Vector2(1236, -546)
 shape = SubResource("RectangleShape2D_lo3v1")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=926177878]
+
+[node name="Netopyr" parent="." unique_id=448176139 instance=ExtResource("24_2nhjh")]
+position = Vector2(3061, 273)
