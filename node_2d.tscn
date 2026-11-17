@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="19_fs4d3"]
 [ext_resource type="Texture2D" uid="uid://0b72h0hn22co" path="res://MuMuSharedFolder/Pictures/pixil-frame-0 (2).png" id="19_rjqkl"]
 [ext_resource type="Texture2D" uid="uid://dx6nogbuob53j" path="res://MuMuSharedFolder/Pictures/[CITYPNG.COM]Green Spotlight Lighting FREE PNG - 1500x1500.png" id="21_7vxoj"]
+[ext_resource type="Script" uid="uid://bjjxbbyxyanbv" path="res://death_zone.gd" id="22_e8dv2"]
 [ext_resource type="PackedScene" uid="uid://wt8wswtx51a8" path="res://grass.tscn" id="22_ei405"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
@@ -86,9 +87,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlhu3"]
 size = Vector2(274.25, 189.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lo3v1"]
+size = Vector2(4306, 20)
+
 [node name="Node" type="Node" unique_id=401883506]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148 groups=["player"]]
+position = Vector2(-30, 1)
 script = ExtResource("1_flf07")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1115214559]
@@ -122,7 +127,10 @@ scale = Vector2(0.07090684, 0.0629394)
 texture = ExtResource("21_7vxoj")
 
 [node name="grass" parent="." unique_id=248336711 instance=ExtResource("22_ei405")]
-position = Vector2(-342, -94.99999)
+position = Vector2(-333, -97)
+
+[node name="grass22" parent="." unique_id=167226144 instance=ExtResource("22_ei405")]
+position = Vector2(-333, -97)
 
 [node name="grass3" parent="." unique_id=1670714672 instance=ExtResource("22_ei405")]
 position = Vector2(-466, -102)
@@ -152,16 +160,91 @@ position = Vector2(1626, -133.99998)
 position = Vector2(1738, -164)
 
 [node name="grass18" parent="." unique_id=2055463911 instance=ExtResource("22_ei405")]
-position = Vector2(1682, 145)
+position = Vector2(1680.8596, 362.26392)
 
 [node name="grass19" parent="." unique_id=976060436 instance=ExtResource("22_ei405")]
-position = Vector2(1798, 165.99998)
+position = Vector2(1796.8596, 383.2639)
 
 [node name="grass20" parent="." unique_id=1557441467 instance=ExtResource("22_ei405")]
-position = Vector2(1917, 185)
+position = Vector2(1915.8596, 402.26392)
 
 [node name="grass21" parent="." unique_id=1046108732 instance=ExtResource("22_ei405")]
-position = Vector2(2020, 206)
+position = Vector2(2010.9999, 426)
+
+[node name="grass23" parent="." unique_id=2012145654 instance=ExtResource("22_ei405")]
+position = Vector2(2930, -157)
+
+[node name="grass24" parent="." unique_id=351408482 instance=ExtResource("22_ei405")]
+position = Vector2(3059, -151)
+
+[node name="grass25" parent="." unique_id=1405737675 instance=ExtResource("22_ei405")]
+position = Vector2(3180.0002, -139.99998)
+
+[node name="grass26" parent="." unique_id=1457427420 instance=ExtResource("22_ei405")]
+position = Vector2(3303, -121)
+
+[node name="grass27" parent="." unique_id=1841194196 instance=ExtResource("22_ei405")]
+position = Vector2(3434, -94)
+
+[node name="grass28" parent="." unique_id=1055218161 instance=ExtResource("22_ei405")]
+position = Vector2(3561, -65)
+
+[node name="grass29" parent="." unique_id=1400335840 instance=ExtResource("22_ei405")]
+position = Vector2(3674, -29)
+
+[node name="grass30" parent="." unique_id=1527613624 instance=ExtResource("22_ei405")]
+position = Vector2(3797, 25)
+
+[node name="grass31" parent="." unique_id=1991224677 instance=ExtResource("22_ei405")]
+position = Vector2(3926, 89)
+
+[node name="grass32" parent="." unique_id=353796156 instance=ExtResource("22_ei405")]
+position = Vector2(4020, 162)
+
+[node name="grass33" parent="." unique_id=625320423 instance=ExtResource("22_ei405")]
+position = Vector2(4130, 223)
+
+[node name="grass34" parent="." unique_id=6583070 instance=ExtResource("22_ei405")]
+position = Vector2(4233, 271)
+
+[node name="grass35" parent="." unique_id=1216302624 instance=ExtResource("22_ei405")]
+position = Vector2(4304, 311)
+
+[node name="grass36" parent="." unique_id=863033421 instance=ExtResource("22_ei405")]
+position = Vector2(4330, 345)
+
+[node name="grass37" parent="." unique_id=66370912 instance=ExtResource("22_ei405")]
+position = Vector2(4354, 392.99997)
+
+[node name="grass38" parent="." unique_id=1431358777 instance=ExtResource("22_ei405")]
+position = Vector2(4365, 446.99997)
+
+[node name="grass39" parent="." unique_id=1597945251 instance=ExtResource("22_ei405")]
+position = Vector2(4354, 492.00003)
+
+[node name="grass40" parent="." unique_id=1099834659 instance=ExtResource("22_ei405")]
+position = Vector2(4327, 536.99994)
+
+[node name="grass41" parent="." unique_id=656790497 instance=ExtResource("22_ei405")]
+position = Vector2(4308, 577)
+
+[node name="grass42" parent="." unique_id=819330008 instance=ExtResource("22_ei405")]
+position = Vector2(4269, 601)
+
+[node name="grass43" parent="." unique_id=436644709 instance=ExtResource("22_ei405")]
+position = Vector2(4223, 626)
+
+[node name="grass44" parent="." unique_id=682285751 instance=ExtResource("22_ei405")]
+position = Vector2(4199, 650.00006)
+
+[node name="grass45" parent="." unique_id=1792621222 instance=ExtResource("22_ei405")]
+position = Vector2(4151, 671)
+
+[node name="grass46" parent="." unique_id=381668553 instance=ExtResource("22_ei405")]
+position = Vector2(4118, 699)
+
+[node name="grass47" parent="." unique_id=166589557 instance=ExtResource("22_ei405")]
+position = Vector2(4118, 699)
 
 [node name="grass8" parent="." unique_id=2038276972 instance=ExtResource("22_ei405")]
 position = Vector2(1001, -237)
@@ -182,4 +265,13 @@ position = Vector2(591, -238)
 position = Vector2(497, -238)
 
 [node name="grass11" parent="." unique_id=1093293322 instance=ExtResource("22_ei405")]
-position = Vector2(386, -231)
+position = Vector2(451, 54)
+
+[node name="DeathZone" type="Area2D" parent="." unique_id=1216420953]
+script = ExtResource("22_e8dv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=722763930]
+position = Vector2(1236, -546)
+shape = SubResource("RectangleShape2D_lo3v1")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=926177878]
