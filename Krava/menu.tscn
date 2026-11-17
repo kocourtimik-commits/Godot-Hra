@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://y62whobfrup1"]
+
+[ext_resource type="Script" uid="uid://b6avpqngxc0bg" path="res://menu.gd" id="1_qtro6"]
+[ext_resource type="Texture2D" uid="uid://dcv5vlmwxla78" path="res://Krava/images (2).jpg" id="2_va55g"]
+[ext_resource type="Texture2D" uid="uid://bucivq20pg6t1" path="res://Krava/images (6).jpg" id="4_tanvi"]
+[ext_resource type="Texture2D" uid="uid://8tehws6tgksw" path="res://Krava/images (4).jpg" id="5_dvkqe"]
+
+[node name="menu" type="Control" unique_id=1893824985]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qtro6")
+pozadi_obrazek = ExtResource("2_va55g")
+postava_obrazek = ExtResource("4_tanvi")
+tlacitko_obrazek = ExtResource("5_dvkqe")
+nazev_hry = "Ms. Cow"
