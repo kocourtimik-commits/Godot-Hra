@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://wt8wswtx51a8" path="res://grass.tscn" id="22_ei405"]
 [ext_resource type="Texture2D" uid="uid://lsbh0q0q8060" path="res://Kravicka/New Piskel (3).png" id="23_e8dv2"]
 [ext_resource type="PackedScene" uid="uid://ck3l8g3b3e1iq" path="res://Krava/netopyr.tscn" id="24_2nhjh"]
+[ext_resource type="Script" uid="uid://cn5miss86t4dx" path="res://level_end.gd" id="25_levelend"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
 animations = [{
@@ -91,6 +92,9 @@ size = Vector2(274.25, 189.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo3v1"]
 size = Vector2(22968.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_konec"]
+size = Vector2(133, 90)
 
 [node name="Node" type="Node" unique_id=401883506]
 
@@ -343,3 +347,11 @@ shape = SubResource("RectangleShape2D_lo3v1")
 
 [node name="Netopyr" parent="." unique_id=448176139 instance=ExtResource("24_2nhjh")]
 position = Vector2(3061, 273)
+
+[node name="KonecLevelu" type="Area2D" parent="." unique_id=748778718]
+position = Vector2(13320, -30)
+script = ExtResource("25_levelend")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KonecLevelu" unique_id=1448464957]
+position = Vector2(1.5, 26)
+shape = SubResource("RectangleShape2D_konec")
