@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://bricks_pass.gd" id="1_pass"]
+[ext_resource type="Texture2D" uid="uid://doxm4j5bvp41b" path="res://assets/textures/bricks.png" id="2_bricks"]
+
+[node name="BricksPass" type="Node2D"]
+script = ExtResource("1_pass")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bricks")
+centered = true

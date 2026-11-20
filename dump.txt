@@ -1,0 +1,41 @@
+### UFO BLOCK ###
+145| [node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]
+146| texture_filter = 1
+147| position = Vector2(45, -474.00006)
+148| scale = Vector2(10.563155, 10.9445)
+149| texture = ExtResource("19_rjqkl")
+150| script = ExtResource("19_fs4d3")
+151| hrac = NodePath("../Player")
+152| 
+153| [node name="RayCast2D" type="RayCast2D" parent="Sprite2D" unique_id=1481142793]
+154| position = Vector2(2.2720485, -6.761381)
+155| target_position = Vector2(0, 300)
+156| 
+157| [node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1447324953]
+158| position = Vector2(1.7040366, 20.284168)
+159| scale = Vector2(0.07090684, 0.0629394)
+160| texture = ExtResource("21_7vxoj")
+161| 
+162| [node name="grass" parent="." unique_id=248336711 instance=ExtResource("22_ei405")]
+### PLAYER BLOCK ###
+125| [node name="Player" type="CharacterBody2D" parent="." unique_id=1260369148 groups=["player"]]
+126| position = Vector2(-30, 1)
+127| script = ExtResource("1_flf07")
+128| 
+129| [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1115214559]
+130| position = Vector2(28, -1.9999981)
+131| scale = Vector2(0.12272042, 0.13745333)
+132| sprite_frames = SubResource("SpriteFrames_qlhu3")
+133| animation = &"idle"
+134| 
+135| [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1589605952]
+136| position = Vector2(30.125, 4.75)
+137| shape = SubResource("RectangleShape2D_qlhu3")
+138| 
+139| [node name="Camera2D" type="Camera2D" parent="Player" unique_id=871205709]
+140| zoom = Vector2(0.6, 0.6)
+141| 
+142| [node name="MlekoPozice" type="Marker2D" parent="Player" unique_id=1546805463]
+143| position = Vector2(1, -35)
+144| 
+145| [node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]

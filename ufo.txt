@@ -1,0 +1,40 @@
+### UFO EXT/USE ###
+20| [ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="19_fs4d3"]
+150| script = ExtResource("19_fs4d3")
+### UFO NODE BLOCK ###
+145| [node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]
+146| texture_filter = 1
+147| position = Vector2(45, -474.00006)
+148| scale = Vector2(10.563155, 10.9445)
+149| texture = ExtResource("19_rjqkl")
+150| script = ExtResource("19_fs4d3")
+151| hrac = NodePath("../Player")
+152| 
+153| [node name="RayCast2D" type="RayCast2D" parent="Sprite2D" unique_id=1481142793]
+154| position = Vector2(2.2720485, -6.761381)
+155| target_position = Vector2(0, 300)
+156| 
+157| [node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1447324953]
+158| position = Vector2(1.7040366, 20.284168)
+159| scale = Vector2(0.07090684, 0.0629394)
+160| texture = ExtResource("21_7vxoj")
+161| 
+162| [node name="grass" parent="." unique_id=248336711 instance=ExtResource("22_ei405")]
+163| position = Vector2(-333, -97)
+164| 
+165| [node name="grass22" parent="." unique_id=167226144 instance=ExtResource("22_ei405")]
+166| position = Vector2(-333, -97)
+167| 
+168| [node name="grass3" parent="." unique_id=1670714672 instance=ExtResource("22_ei405")]
+169| position = Vector2(-466, -102)
+170| 
+171| [node name="grass2" parent="." unique_id=2070013979 instance=ExtResource("22_ei405")]
+172| position = Vector2(-207.00002, -95.99999)
+173| 
+174| [node name="grass4" parent="." unique_id=1490380514 instance=ExtResource("22_ei405")]
+175| position = Vector2(-76, -97)
+176| 
+177| [node name="grass5" parent="." unique_id=618664224 instance=ExtResource("22_ei405")]
+178| position = Vector2(41.999996, -97.00001)
+179| 
+180| [node name="grass6" parent="." unique_id=221027836 instance=ExtResource("22_ei405")]

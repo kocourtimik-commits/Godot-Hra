@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://block.tscn" id="2_block"]
+[ext_resource type="Script" path="res://death_zone.gd" id="4_death"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_death"]
+size = Vector2(8000, 400)
+
+[node name="Level2" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(0, 500)
+
+[node name="Block" parent="." instance=ExtResource("2_block")]
+position = Vector2(0, 0)
+sirka = 1200.0
+vyska = 200.0
+
+[node name="Smrt" type="Area2D" parent="."]
+position = Vector2(0, 1400)
+script = ExtResource("4_death")
+dalsi_level = "res://level2.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Smrt"]
+shape = SubResource("RectangleShape2D_death")
