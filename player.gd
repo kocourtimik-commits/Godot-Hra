@@ -3,6 +3,9 @@ extends CharacterBody2D
 @export var cooldown_dvojskoku: float = 1.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var spodni_raycast: RayCast2D = $SpodniRayCast
+@onready var horni_raycast: RayCast2D = $HorniRayCast
+@export var sila_vylezu: float = 250
 
 const SPEED: float = 900.0
 const JUMP_VELOCITY: float = 1100.0
@@ -70,6 +73,16 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.scale = Vector2(0.1, 0.1)
 		animated_sprite.position.y = -20
 
+		if direction:
+			spodni_raycast.scale.x = direction 
+			horni_raycast.scale.x = direction
+			spodni_raycast.force_raycast_update()
+			horni_raycast.force_raycast_update()
+		
+		if is_on_floor() and direction != 0:
+			if spodni_raycast.is_colliding():
+				print("podlaha:", is_on_floor(), " spodni:", spodni_raycast.is_colliding(), " horni:", horni_raycast.is_colliding())
+				velocity.y = sila_vylezu
 	move_and_slide()
 
 
@@ -81,3 +94,5 @@ func vystrik_mleko() -> void:
 	await get_tree().create_timer(0.3).timeout
 	if is_instance_valid(mleko):
 		mleko.remove_collision_exception_with(self)
+		
+		

@@ -1,0 +1,66 @@
+﻿extends Area2D
+
+@export_file("*.tscn") var menu_scena: String = "res://Krava/menu.tscn"
+@export var text_dokonceni: String = "LEVEL COMPLETE"
+@export var doba_cekani: float = 1.4
+
+var _hotovo: bool = false
+
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if _hotovo:
+		return
+	if not body.is_in_group("player"):
+		return
+	_hotovo = true
+	_ukonci_level(body)
+
+
+func _ukonci_level(hrac: Node) -> void:
+	set_deferred("monitoring", false)
+	if hrac is CharacterBody2D:
+		hrac.set_physics_process(false)
+
+	var vrstva := CanvasLayer.new()
+	vrstva.layer = 100
+	add_child(vrstva)
+
+	var kryt := ColorRect.new()
+	kryt.color = Color(0.0, 0.0, 0.0, 0.0)
+	kryt.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vrstva.add_child(kryt)
+	kryt.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var stred := CenterContainer.new()
+	stred.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vrstva.add_child(stred)
+	stred.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var popis := Label.new()
+	popis.text = text_dokonceni
+	popis.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	popis.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	popis.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	popis.add_theme_font_size_override("font_size", 96)
+	popis.add_theme_color_override("font_color", Color(1.0, 0.97, 0.85))
+	popis.add_theme_color_override("font_outline_color", Color(0.1, 0.05, 0.0))
+	popis.add_theme_constant_override("outline_size", 20)
+	popis.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.6))
+	popis.add_theme_constant_override("shadow_offset_x", 6)
+	popis.add_theme_constant_override("shadow_offset_y", 6)
+	popis.modulate.a = 0.0
+	stred.add_child(popis)
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(popis, "modulate:a", 1.0, 0.4)
+	tween.tween_property(kryt, "color:a", 1.0, 0.6).set_delay(doba_cekani - 0.5)
+	tween.set_parallel(false)
+	tween.tween_interval(doba_cekani)
+	await tween.finished
+
+	get_tree().change_scene_to_file(menu_scena)

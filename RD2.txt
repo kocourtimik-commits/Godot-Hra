@@ -1,0 +1,49 @@
+@@@PG_45-75@@@
+45| 		if velocity.y > -200.0:
+46| 			nasobek *= 0.6
+47| 		velocity.y -= GRAVITACE * nasobek * delta
+48| 		velocity.y = maxf(velocity.y, -1800.0)
+49| 
+50| 	if Input.is_action_just_pressed("jump"):
+51| 		if is_on_floor() or _coyote > 0.0:
+52| 			velocity.y = JUMP_VELOCITY
+53| 			_coyote = 0.0
+54| 		elif _skoku_ve_vzduchu < MAX_SKOKU_VE_VZDUCHU and _cooldown <= 0.0:
+55| 			velocity.y = AIR_JUMP_VELOCITY
+56| 			_skoku_ve_vzduchu += 1
+57| 			_cooldown = cooldown_dvojskoku
+58| 			vystrik_mleko()
+59| 
+60| 	var direction := Input.get_axis("left", "right")
+61| 
+62| 	if direction:
+63| 		velocity.x = direction * SPEED
+64| 		animated_sprite.play("run")
+65| 		animated_sprite.flip_h = direction < 0
+66| 		animated_sprite.scale = Vector2(1.0, 1.0)
+67| 	else:
+68| 		velocity.x = move_toward(velocity.x, 0, SPEED)
+69| 		animated_sprite.play("idle")
+70| 		animated_sprite.scale = Vector2(0.1, 0.1)
+71| 		animated_sprite.position.y = -20
+72| 
+73| 	move_and_slide()
+74| 
+75| 
+@@@PTS_NODES@@@
+83| size = Vector2(274.25, 189.5)
+85| [node name="Player" type="CharacterBody2D" unique_id=1154363848 groups=["player"]]
+86| position = Vector2(-30, 1)
+89| [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=568718037]
+90| position = Vector2(28, -1.9999981)
+91| scale = Vector2(0.12272042, 0.13745333)
+95| [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=833822942]
+96| position = Vector2(30.125, 4.75)
+99| [node name="Camera2D" type="Camera2D" parent="." unique_id=398621493]
+102| [node name="MlekoPozice" type="Marker2D" parent="." unique_id=1106142227]
+103| position = Vector2(1, -35)
+@@@UFO_EXTS@@@
+21| [ext_resource type="Texture2D" uid="uid://0b72h0hn22co" path="res://MuMuSharedFolder/Pictures/pixil-frame-0 (2).png" id="19_rjqkl"]
+22| [ext_resource type="Texture2D" uid="uid://dx6nogbuob53j" path="res://MuMuSharedFolder/Pictures/[CITYPNG.COM]Green Spotlight Lighting FREE PNG - 1500x1500.png" id="21_7vxoj"]
+149| texture = ExtResource("19_rjqkl")
+160| texture = ExtResource("21_7vxoj")

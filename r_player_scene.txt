@@ -1,0 +1,103 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://player.gd" id="1_op7ga"]
+[ext_resource type="Texture2D" path="res://Kravicka/pngkey.com-cow-png-152411 (1).png" id="2_q13i1"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_01_delay-0.07s.png" id="3_pylmc"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_02_delay-0.07s.png" id="4_pbfsw"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_03_delay-0.07s.png" id="5_5tmop"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_04_delay-0.07s.png" id="6_7ahtn"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_05_delay-0.07s.png" id="7_7lmhl"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_06_delay-0.07s.png" id="8_dx0e4"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_07_delay-0.07s.png" id="9_jm5j8"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_08_delay-0.07s.png" id="10_7hik5"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_09_delay-0.07s.png" id="11_qtqh7"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_10_delay-0.07s.png" id="12_2wuci"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_11_delay-0.07s.png" id="13_iruf7"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_12_delay-0.07s.png" id="14_j5n4i"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_13_delay-0.07s.png" id="15_634y6"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_14_delay-0.07s.png" id="16_efrwb"]
+[ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_15_delay-0.07s.png" id="17_hiqhm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q13i1")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pylmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pbfsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5tmop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7ahtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7lmhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dx0e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jm5j8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7hik5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_qtqh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2wuci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_iruf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_j5n4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_634y6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_efrwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hiqhm")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlhu3"]
+size = Vector2(274.25, 189.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=1154363848 groups=["player"]]
+position = Vector2(-30, 1)
+script = ExtResource("1_op7ga")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=568718037]
+position = Vector2(28, -1.9999981)
+scale = Vector2(0.12272042, 0.13745333)
+sprite_frames = SubResource("SpriteFrames_qlhu3")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=833822942]
+position = Vector2(30.125, 4.75)
+shape = SubResource("RectangleShape2D_qlhu3")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=398621493]
+zoom = Vector2(0.6, 0.6)
+
+[node name="MlekoPozice" type="Marker2D" parent="." unique_id=1106142227]
+position = Vector2(1, -35)

@@ -1,26 +1,37 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://b05ltstunxlix"]
 
-[ext_resource type="PackedScene" path="res://player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://bikms3t1koag1" path="res://player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://block.tscn" id="2_block"]
-[ext_resource type="Script" path="res://death_zone.gd" id="4_death"]
+[ext_resource type="Script" uid="uid://bjjxbbyxyanbv" path="res://death_zone.gd" id="4_death"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_death"]
 size = Vector2(8000, 400)
 
-[node name="Level2" type="Node2D"]
+[node name="Level2" type="Node2D" unique_id=942296687]
 
-[node name="Player" parent="." instance=ExtResource("1_player")]
+[node name="Player" parent="." unique_id=1211604062 instance=ExtResource("1_player")]
 position = Vector2(0, 500)
 
-[node name="Block" parent="." instance=ExtResource("2_block")]
-position = Vector2(0, 0)
+[node name="Block" parent="." unique_id=218621654 instance=ExtResource("2_block")]
+position = Vector2(17, 11)
 sirka = 1200.0
-vyska = 200.0
 
-[node name="Smrt" type="Area2D" parent="."]
+[node name="Block2" parent="." unique_id=2015037125 instance=ExtResource("2_block")]
+position = Vector2(761, 11)
+sirka = 1200.0
+
+[node name="Block3" parent="." unique_id=1330297601 instance=ExtResource("2_block")]
+position = Vector2(1480, 11)
+sirka = 1200.0
+
+[node name="Block4" parent="." unique_id=1970348051 instance=ExtResource("2_block")]
+position = Vector2(2200, 55)
+sirka = 1200.0
+
+[node name="Smrt" type="Area2D" parent="." unique_id=1077106160]
 position = Vector2(0, 1400)
 script = ExtResource("4_death")
-dalsi_level = "res://level2.tscn"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Smrt"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Smrt" unique_id=47464533]
+position = Vector2(-24, -2364)
 shape = SubResource("RectangleShape2D_death")

@@ -1,0 +1,228 @@
+===PLAYER.GD===
+extends CharacterBody2D
+
+@export var cooldown_dvojskoku: float = 1.0
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+const SPEED: float = 900.0
+const JUMP_VELOCITY: float = 1100.0
+const AIR_JUMP_VELOCITY: float = 950.0
+const GRAVITACE: float = 1400.0
+const MAX_SKOKU_VE_VZDUCHU: int = 1
+const COYOTE: float = 0.12
+
+var mleko_scena = preload("res://mleko.tscn")
+
+var _cas_bez_zeme: float = 0.0
+var _skoku_ve_vzduchu: int = 0
+var _coyote: float = 0.0
+var _cooldown: float = 0.0
+
+
+func _ready() -> void:
+	up_direction = Vector2(0, 1)
+	motion_mode = MOTION_MODE_GROUNDED
+	floor_snap_length = 0.0
+	floor_stop_on_slope = false
+	floor_constant_speed = true
+	floor_block_on_wall = true
+	floor_max_angle = deg_to_rad(60.0)
+	slide_on_ceiling = false
+	set_collision_mask_value(2, true)
+
+
+func _physics_process(delta: float) -> void:
+	_cooldown = maxf(0.0, _cooldown - delta)
+
+	if is_on_floor():
+		_cas_bez_zeme = 0.0
+		_coyote = COYOTE
+		_skoku_ve_vzduchu = 0
+	else:
+		_cas_bez_zeme += delta
+		_coyote = maxf(0.0, _coyote - delta)
+		var nasobek := lerpf(1.0, 2.2, clampf(_cas_bez_zeme / 0.3, 0.0, 1.0))
+		if velocity.y > -200.0:
+			nasobek *= 0.6
+		velocity.y -= GRAVITACE * nasobek * delta
+		velocity.y = maxf(velocity.y, -1800.0)
+
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor() or _coyote > 0.0:
+			velocity.y = JUMP_VELOCITY
+			_coyote = 0.0
+		elif _skoku_ve_vzduchu < MAX_SKOKU_VE_VZDUCHU and _cooldown <= 0.0:
+			velocity.y = AIR_JUMP_VELOCITY
+			_skoku_ve_vzduchu += 1
+			_cooldown = cooldown_dvojskoku
+			vystrik_mleko()
+
+	var direction := Input.get_axis("left", "right")
+
+	if direction:
+		velocity.x = direction * SPEED
+		animated_sprite.play("run")
+		animated_sprite.flip_h = direction < 0
+		animated_sprite.scale = Vector2(1.0, 1.0)
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		animated_sprite.play("idle")
+		animated_sprite.scale = Vector2(0.1, 0.1)
+		animated_sprite.position.y = -20
+
+	move_and_slide()
+
+
+func vystrik_mleko() -> void:
+	var mleko = mleko_scena.instantiate()
+	get_parent().add_child(mleko)
+	mleko.global_position = $MlekoPozice.global_position
+	mleko.add_collision_exception_with(self)
+	await get_tree().create_timer(0.3).timeout
+	if is_instance_valid(mleko):
+		mleko.remove_collision_exception_with(self)
+===LEVEL_END.GD===
+extends Area2D
+
+@export_file("*.tscn") var menu_scena: String = "res://Krava/menu.tscn"
+@export var text_dokonceni: String = "LEVEL COMPLETE"
+@export var doba_cekani: float = 1.4
+
+var _hotovo: bool = false
+
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if _hotovo:
+		return
+	if not body.is_in_group("player"):
+		return
+	_hotovo = true
+	_ukonci_level(body)
+
+
+func _ukonci_level(hrac: Node) -> void:
+	set_deferred("monitoring", false)
+	if hrac is CharacterBody2D:
+		hrac.set_physics_process(false)
+
+	var vrstva := CanvasLayer.new()
+	vrstva.layer = 100
+	add_child(vrstva)
+
+	var kryt := ColorRect.new()
+	kryt.color = Color(0.0, 0.0, 0.0, 0.0)
+	kryt.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vrstva.add_child(kryt)
+	kryt.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var stred := CenterContainer.new()
+	stred.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vrstva.add_child(stred)
+	stred.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var popis := Label.new()
+	popis.text = text_dokonceni
+	popis.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	popis.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	popis.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	popis.add_theme_font_size_override("font_size", 96)
+	popis.add_theme_color_override("font_color", Color(1.0, 0.97, 0.85))
+	popis.add_theme_color_override("font_outline_color", Color(0.1, 0.05, 0.0))
+	popis.add_theme_constant_override("outline_size", 20)
+	popis.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.6))
+	popis.add_theme_constant_override("shadow_offset_x", 6)
+	popis.add_theme_constant_override("shadow_offset_y", 6)
+	popis.modulate.a = 0.0
+	stred.add_child(popis)
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(popis, "modulate:a", 1.0, 0.4)
+	tween.tween_property(kryt, "color:a", 1.0, 0.6).set_delay(doba_cekani - 0.5)
+	tween.set_parallel(false)
+	tween.tween_interval(doba_cekani)
+	await tween.finished
+
+	get_tree().change_scene_to_file(menu_scena)
+===EXT_RES===
+3| [ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_flf07"]
+4| [ext_resource type="Texture2D" uid="uid://fg80hytdpqm7" path="res://Kravicka/transformed-images/frame_01_delay-0.07s.png" id="2_k73cj"]
+5| [ext_resource type="Texture2D" uid="uid://cjw21e6ny7dm1" path="res://Kravicka/pngkey.com-cow-png-152411 (1).png" id="2_rjqkl"]
+6| [ext_resource type="Texture2D" uid="uid://bpy4mje0hlis1" path="res://Kravicka/transformed-images/frame_02_delay-0.07s.png" id="3_rjqkl"]
+7| [ext_resource type="Texture2D" uid="uid://ch1t2s0e18kuc" path="res://Kravicka/transformed-images/frame_03_delay-0.07s.png" id="4_fs4d3"]
+8| [ext_resource type="Texture2D" uid="uid://cf5ldt11io47t" path="res://Kravicka/transformed-images/frame_04_delay-0.07s.png" id="5_7vxoj"]
+9| [ext_resource type="Texture2D" uid="uid://67kv7fc7u8cx" path="res://Kravicka/transformed-images/frame_05_delay-0.07s.png" id="6_ei405"]
+10| [ext_resource type="Texture2D" uid="uid://btjqmduao3hbw" path="res://Kravicka/transformed-images/frame_06_delay-0.07s.png" id="7_e8dv2"]
+11| [ext_resource type="Texture2D" uid="uid://duf5h5r38kpc3" path="res://Kravicka/transformed-images/frame_07_delay-0.07s.png" id="8_2nhjh"]
+12| [ext_resource type="Texture2D" uid="uid://d2n2mbbthxcnt" path="res://Kravicka/transformed-images/frame_08_delay-0.07s.png" id="9_bjha6"]
+13| [ext_resource type="Texture2D" uid="uid://mxxpulofpn80" path="res://Kravicka/transformed-images/frame_09_delay-0.07s.png" id="10_gt76g"]
+14| [ext_resource type="Texture2D" uid="uid://rp0bekbvc5dr" path="res://Kravicka/transformed-images/frame_10_delay-0.07s.png" id="11_1fr6y"]
+15| [ext_resource type="Texture2D" uid="uid://t45hoqdk6tut" path="res://Kravicka/transformed-images/frame_11_delay-0.07s.png" id="12_2hxjc"]
+16| [ext_resource type="Texture2D" uid="uid://tedalcnnl3ht" path="res://Kravicka/transformed-images/frame_12_delay-0.07s.png" id="13_ebxd8"]
+17| [ext_resource type="Texture2D" uid="uid://blxxq7qkccoyk" path="res://Kravicka/transformed-images/frame_13_delay-0.07s.png" id="14_2u7jv"]
+18| [ext_resource type="Texture2D" uid="uid://dfjh6yr0ggg2i" path="res://Kravicka/transformed-images/frame_14_delay-0.07s.png" id="15_24dk6"]
+19| [ext_resource type="Texture2D" uid="uid://f7wiqn63ormg" path="res://Kravicka/transformed-images/frame_15_delay-0.07s.png" id="16_mryly"]
+20| [ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="19_fs4d3"]
+21| [ext_resource type="Texture2D" uid="uid://0b72h0hn22co" path="res://MuMuSharedFolder/Pictures/pixil-frame-0 (2).png" id="19_rjqkl"]
+22| [ext_resource type="Texture2D" uid="uid://dx6nogbuob53j" path="res://MuMuSharedFolder/Pictures/[CITYPNG.COM]Green Spotlight Lighting FREE PNG - 1500x1500.png" id="21_7vxoj"]
+23| [ext_resource type="Script" uid="uid://bjjxbbyxyanbv" path="res://death_zone.gd" id="22_e8dv2"]
+24| [ext_resource type="PackedScene" uid="uid://wt8wswtx51a8" path="res://grass.tscn" id="22_ei405"]
+25| [ext_resource type="Texture2D" uid="uid://lsbh0q0q8060" path="res://Kravicka/New Piskel (3).png" id="23_e8dv2"]
+26| [ext_resource type="PackedScene" uid="uid://ck3l8g3b3e1iq" path="res://Krava/netopyr.tscn" id="24_2nhjh"]
+27| [ext_resource type="Script" uid="uid://cn5miss86t4dx" path="res://level_end.gd" id="25_levelend"]
+===UFO_BLOCK===
+137| shape = SubResource("RectangleShape2D_qlhu3")
+138| 
+139| [node name="Camera2D" type="Camera2D" parent="Player" unique_id=871205709]
+140| zoom = Vector2(0.6, 0.6)
+141| 
+142| [node name="MlekoPozice" type="Marker2D" parent="Player" unique_id=1546805463]
+143| position = Vector2(1, -35)
+144| 
+145| [node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]
+146| texture_filter = 1
+147| position = Vector2(45, -474.00006)
+148| scale = Vector2(10.563155, 10.9445)
+149| texture = ExtResource("19_rjqkl")
+150| script = ExtResource("19_fs4d3")
+151| hrac = NodePath("../Player")
+152| 
+153| [node name="RayCast2D" type="RayCast2D" parent="Sprite2D" unique_id=1481142793]
+154| position = Vector2(2.2720485, -6.761381)
+155| target_position = Vector2(0, 300)
+156| 
+157| [node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1447324953]
+158| position = Vector2(1.7040366, 20.284168)
+159| scale = Vector2(0.07090684, 0.0629394)
+160| texture = ExtResource("21_7vxoj")
+161| 
+162| [node name="grass" parent="." unique_id=248336711 instance=ExtResource("22_ei405")]
+163| position = Vector2(-333, -97)
+164| 
+165| [node name="grass22" parent="." unique_id=167226144 instance=ExtResource("22_ei405")]
+166| position = Vector2(-333, -97)
+===KONEC_BLOCK===
+17| [ext_resource type="Texture2D" uid="uid://blxxq7qkccoyk" path="res://Kravicka/transformed-images/frame_13_delay-0.07s.png" id="14_2u7jv"]
+18| [ext_resource type="Texture2D" uid="uid://dfjh6yr0ggg2i" path="res://Kravicka/transformed-images/frame_14_delay-0.07s.png" id="15_24dk6"]
+19| [ext_resource type="Texture2D" uid="uid://f7wiqn63ormg" path="res://Kravicka/transformed-images/frame_15_delay-0.07s.png" id="16_mryly"]
+20| [ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="19_fs4d3"]
+21| [ext_resource type="Texture2D" uid="uid://0b72h0hn22co" path="res://MuMuSharedFolder/Pictures/pixil-frame-0 (2).png" id="19_rjqkl"]
+22| [ext_resource type="Texture2D" uid="uid://dx6nogbuob53j" path="res://MuMuSharedFolder/Pictures/[CITYPNG.COM]Green Spotlight Lighting FREE PNG - 1500x1500.png" id="21_7vxoj"]
+23| [ext_resource type="Script" uid="uid://bjjxbbyxyanbv" path="res://death_zone.gd" id="22_e8dv2"]
+24| [ext_resource type="PackedScene" uid="uid://wt8wswtx51a8" path="res://grass.tscn" id="22_ei405"]
+25| [ext_resource type="Texture2D" uid="uid://lsbh0q0q8060" path="res://Kravicka/New Piskel (3).png" id="23_e8dv2"]
+26| [ext_resource type="PackedScene" uid="uid://ck3l8g3b3e1iq" path="res://Krava/netopyr.tscn" id="24_2nhjh"]
+27| [ext_resource type="Script" uid="uid://cn5miss86t4dx" path="res://level_end.gd" id="25_levelend"]
+28| 
+29| [sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
+30| animations = [{
+31| "frames": [{
+32| "duration": 1.0,
+33| "texture": ExtResource("2_rjqkl")
+34| }],
+===PLANKS_ID===

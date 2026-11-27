@@ -1,0 +1,96 @@
+@@@PG_1-44@@@
+1| extends CharacterBody2D
+2| 
+3| @export var cooldown_dvojskoku: float = 1.0
+4| 
+5| @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+6| 
+7| const SPEED: float = 900.0
+8| const JUMP_VELOCITY: float = 1100.0
+9| const AIR_JUMP_VELOCITY: float = 950.0
+10| const GRAVITACE: float = 1400.0
+11| const MAX_SKOKU_VE_VZDUCHU: int = 1
+12| const COYOTE: float = 0.12
+13| 
+14| var mleko_scena = preload("res://mleko.tscn")
+15| 
+16| var _cas_bez_zeme: float = 0.0
+17| var _skoku_ve_vzduchu: int = 0
+18| var _coyote: float = 0.0
+19| var _cooldown: float = 0.0
+20| 
+21| 
+22| func _ready() -> void:
+23| 	up_direction = Vector2(0, 1)
+24| 	motion_mode = MOTION_MODE_GROUNDED
+25| 	floor_snap_length = 0.0
+26| 	floor_stop_on_slope = false
+27| 	floor_constant_speed = true
+28| 	floor_block_on_wall = true
+29| 	floor_max_angle = deg_to_rad(60.0)
+30| 	slide_on_ceiling = false
+31| 	set_collision_mask_value(2, true)
+32| 
+33| 
+34| func _physics_process(delta: float) -> void:
+35| 	_cooldown = maxf(0.0, _cooldown - delta)
+36| 
+37| 	if is_on_floor():
+38| 		_cas_bez_zeme = 0.0
+39| 		_coyote = COYOTE
+40| 		_skoku_ve_vzduchu = 0
+41| 	else:
+42| 		_cas_bez_zeme += delta
+43| 		_coyote = maxf(0.0, _coyote - delta)
+44| 		var nasobek := lerpf(1.0, 2.2, clampf(_cas_bez_zeme / 0.3, 0.0, 1.0))
+@@@UFO_SCRIPT@@@
+extends Sprite2D
+
+@export var hrac: Node2D
+@export var rychlost_dojezdu: float = 5.0
+
+var cas: float = 0.0
+var vyska_pohupu: float = 10.0
+var rychlost_pohupu: float = 3.0
+
+@onready var ray_cast: RayCast2D = $RayCast2D
+
+func _ready() -> void:
+	show_behind_parent = true
+	if ray_cast:
+		ray_cast.enabled = true
+
+func _process(delta: float) -> void:
+	if hrac:
+		cas += delta * rychlost_pohupu
+		var pohup_x = sin(cas * 0.7) * 50.0
+		var pohup_y = sin(cas) * vyska_pohupu
+		
+		var cilova_pozice = Vector2(hrac.global_position.x + pohup_x, hrac.global_position.y - 355.0 + pohup_y)
+		global_position = global_position.lerp(cilova_pozice, rychlost_dojezdu * delta)
+		 
+@@@UFO_NODES@@@
+145| [node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]
+146| texture_filter = 1
+147| position = Vector2(45, -474.00006)
+148| scale = Vector2(10.563155, 10.9445)
+149| texture = ExtResource("19_rjqkl")
+150| script = ExtResource("19_fs4d3")
+151| hrac = NodePath("../Player")
+152| 
+153| [node name="RayCast2D" type="RayCast2D" parent="Sprite2D" unique_id=1481142793]
+154| position = Vector2(2.2720485, -6.761381)
+155| target_position = Vector2(0, 300)
+156| 
+157| [node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1447324953]
+158| position = Vector2(1.7040366, 20.284168)
+159| scale = Vector2(0.07090684, 0.0629394)
+160| texture = ExtResource("21_7vxoj")
+161| 
+162| [node name="grass" parent="." unique_id=248336711 instance=ExtResource("22_ei405")]
+163| position = Vector2(-333, -97)
+164| 
+165| [node name="grass22" parent="." unique_id=167226144 instance=ExtResource("22_ei405")]
+166| position = Vector2(-333, -97)
+167| 
+168| [node name="grass3" parent="." unique_id=1670714672 instance=ExtResource("22_ei405")]

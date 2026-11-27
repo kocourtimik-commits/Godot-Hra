@@ -1,0 +1,145 @@
+@@@PG_1-45@@@
+1| extends CharacterBody2D
+2| 
+3| @export var cooldown_dvojskoku: float = 1.0
+4| 
+5| @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+6| 
+7| const SPEED: float = 900.0
+8| const JUMP_VELOCITY: float = 1100.0
+9| const AIR_JUMP_VELOCITY: float = 950.0
+10| const GRAVITACE: float = 1400.0
+11| const MAX_SKOKU_VE_VZDUCHU: int = 1
+12| const COYOTE: float = 0.12
+13| 
+14| var mleko_scena = preload("res://mleko.tscn")
+15| 
+16| var _cas_bez_zeme: float = 0.0
+17| var _skoku_ve_vzduchu: int = 0
+18| var _coyote: float = 0.0
+19| var _cooldown: float = 0.0
+20| 
+21| 
+22| func _ready() -> void:
+23| 	up_direction = Vector2(0, 1)
+24| 	motion_mode = MOTION_MODE_GROUNDED
+25| 	floor_snap_length = 0.0
+26| 	floor_stop_on_slope = false
+27| 	floor_constant_speed = true
+28| 	floor_block_on_wall = true
+29| 	floor_max_angle = deg_to_rad(60.0)
+30| 	slide_on_ceiling = false
+31| 	set_collision_mask_value(2, true)
+32| 
+33| 
+34| func _physics_process(delta: float) -> void:
+35| 	_cooldown = maxf(0.0, _cooldown - delta)
+36| 
+37| 	if is_on_floor():
+38| 		_cas_bez_zeme = 0.0
+39| 		_coyote = COYOTE
+40| 		_skoku_ve_vzduchu = 0
+41| 	else:
+42| 		_cas_bez_zeme += delta
+43| 		_coyote = maxf(0.0, _coyote - delta)
+44| 		var nasobek := lerpf(1.0, 2.2, clampf(_cas_bez_zeme / 0.3, 0.0, 1.0))
+45| 		if velocity.y > -200.0:
+@@@UFO_BLOCK@@@
+139| [node name="Camera2D" type="Camera2D" parent="Player" unique_id=871205709]
+140| zoom = Vector2(0.6, 0.6)
+141| 
+142| [node name="MlekoPozice" type="Marker2D" parent="Player" unique_id=1546805463]
+143| position = Vector2(1, -35)
+144| 
+145| [node name="Sprite2D" type="Sprite2D" parent="." unique_id=908069882 node_paths=PackedStringArray("hrac")]
+146| texture_filter = 1
+147| position = Vector2(45, -474.00006)
+148| scale = Vector2(10.563155, 10.9445)
+149| texture = ExtResource("19_rjqkl")
+150| script = ExtResource("19_fs4d3")
+151| hrac = NodePath("../Player")
+152| 
+153| [node name="RayCast2D" type="RayCast2D" parent="Sprite2D" unique_id=1481142793]
+154| position = Vector2(2.2720485, -6.761381)
+155| target_position = Vector2(0, 300)
+156| 
+157| [node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1447324953]
+158| position = Vector2(1.7040366, 20.284168)
+159| scale = Vector2(0.07090684, 0.0629394)
+160| texture = ExtResource("21_7vxoj")
+161| 
+162| [node name="grass" parent="." unique_id=248336711 instance=ExtResource("22_ei405")]
+163| position = Vector2(-333, -97)
+164| 
+165| [node name="grass22" parent="." unique_id=167226144 instance=ExtResource("22_ei405")]
+166| position = Vector2(-333, -97)
+167| 
+168| [node name="grass3" parent="." unique_id=1670714672 instance=ExtResource("22_ei405")]
+169| position = Vector2(-466, -102)
+170| 
+171| [node name="grass2" parent="." unique_id=2070013979 instance=ExtResource("22_ei405")]
+172| position = Vector2(-207.00002, -95.99999)
+173| 
+174| [node name="grass4" parent="." unique_id=1490380514 instance=ExtResource("22_ei405")]
+175| position = Vector2(-76, -97)
+176| 
+177| [node name="grass5" parent="." unique_id=618664224 instance=ExtResource("22_ei405")]
+178| position = Vector2(41.999996, -97.00001)
+179| 
+180| [node name="grass6" parent="." unique_id=221027836 instance=ExtResource("22_ei405")]
+181| position = Vector2(174, -96.99999)
+182| 
+183| [node name="grass7" parent="." unique_id=344734739 instance=ExtResource("22_ei405")]
+184| position = Vector2(1401, -134)
+185| 
+186| [node name="grass15" parent="." unique_id=1410005896 instance=ExtResource("22_ei405")]
+187| position = Vector2(1513, -133.99998)
+188| 
+189| [node name="grass16" parent="." unique_id=645797456 instance=ExtResource("22_ei405")]
+190| position = Vector2(1626, -133.99998)
+191| 
+192| [node name="grass17" parent="." unique_id=815909724 instance=ExtResource("22_ei405")]
+193| position = Vector2(1738, -164)
+194| 
+195| [node name="grass18" parent="." unique_id=2055463911 instance=ExtResource("22_ei405")]
+@@@PTS_1-40@@@
+1| [gd_scene format=3]
+2| 
+3| [ext_resource type="Script" path="res://player.gd" id="1_op7ga"]
+4| [ext_resource type="Texture2D" path="res://Kravicka/pngkey.com-cow-png-152411 (1).png" id="2_q13i1"]
+5| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_01_delay-0.07s.png" id="3_pylmc"]
+6| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_02_delay-0.07s.png" id="4_pbfsw"]
+7| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_03_delay-0.07s.png" id="5_5tmop"]
+8| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_04_delay-0.07s.png" id="6_7ahtn"]
+9| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_05_delay-0.07s.png" id="7_7lmhl"]
+10| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_06_delay-0.07s.png" id="8_dx0e4"]
+11| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_07_delay-0.07s.png" id="9_jm5j8"]
+12| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_08_delay-0.07s.png" id="10_7hik5"]
+13| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_09_delay-0.07s.png" id="11_qtqh7"]
+14| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_10_delay-0.07s.png" id="12_2wuci"]
+15| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_11_delay-0.07s.png" id="13_iruf7"]
+16| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_12_delay-0.07s.png" id="14_j5n4i"]
+17| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_13_delay-0.07s.png" id="15_634y6"]
+18| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_14_delay-0.07s.png" id="16_efrwb"]
+19| [ext_resource type="Texture2D" path="res://Kravicka/transformed-images/frame_15_delay-0.07s.png" id="17_hiqhm"]
+20| 
+21| [sub_resource type="SpriteFrames" id="SpriteFrames_qlhu3"]
+22| animations = [{
+23| "frames": [{
+24| "duration": 1.0,
+25| "texture": ExtResource("2_q13i1")
+26| }],
+27| "loop": 1,
+28| "name": &"idle",
+29| "speed": 5.0
+30| }, {
+31| "frames": [{
+32| "duration": 1.0,
+33| "texture": ExtResource("3_pylmc")
+34| }, {
+35| "duration": 1.0,
+36| "texture": ExtResource("4_pbfsw")
+37| }, {
+38| "duration": 1.0,
+39| "texture": ExtResource("5_5tmop")
+40| }, {
