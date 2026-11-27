@@ -102,9 +102,9 @@ zoom = Vector2(0.6, 0.6)
 position = Vector2(1, -35)
 
 [node name="SpodniRayCast" type="RayCast2D" parent="." unique_id=1134138433]
-position = Vector2(-106, -16)
+position = Vector2(-107, -90)
 target_position = Vector2(300, 0)
 
 [node name="HorniRayCast" type="RayCast2D" parent="." unique_id=45518650]
-position = Vector2(-107, -90)
+position = Vector2(-107, -17)
 target_position = Vector2(302, 1)

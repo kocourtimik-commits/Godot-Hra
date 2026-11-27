@@ -1,13 +1,21 @@
 [gd_scene format=3 uid="uid://b05ltstunxlix"]
 
 [ext_resource type="PackedScene" uid="uid://bikms3t1koag1" path="res://player.tscn" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://lsbh0q0q8060" path="res://Kravicka/New Piskel (3).png" id="2_8tcn8"]
 [ext_resource type="PackedScene" path="res://block.tscn" id="2_block"]
 [ext_resource type="Script" uid="uid://bjjxbbyxyanbv" path="res://death_zone.gd" id="4_death"]
+[ext_resource type="PackedScene" uid="uid://wt8wswtx51a8" path="res://grass.tscn" id="4_r6vdu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_death"]
 size = Vector2(8000, 400)
 
 [node name="Level2" type="Node2D" unique_id=942296687]
+
+[node name="pozadi2" type="Sprite2D" parent="." unique_id=25692317]
+texture_filter = 1
+position = Vector2(815.0001, 634)
+scale = Vector2(45, 45)
+texture = ExtResource("2_8tcn8")
 
 [node name="Player" parent="." unique_id=1211604062 instance=ExtResource("1_player")]
 position = Vector2(0, 500)
@@ -35,3 +43,39 @@ script = ExtResource("4_death")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Smrt" unique_id=47464533]
 position = Vector2(-24, -2364)
 shape = SubResource("RectangleShape2D_death")
+
+[node name="grass14" parent="." unique_id=248336711 instance=ExtResource("4_r6vdu")]
+position = Vector2(3319.8442, 96.92145)
+scale = Vector2(30.08798, 27.273167)
+
+[node name="grass15" parent="." unique_id=1610696540 instance=ExtResource("4_r6vdu")]
+position = Vector2(4028, 220.99997)
+scale = Vector2(30.08798, 27.273167)
+
+[node name="grass16" parent="." unique_id=627597238 instance=ExtResource("4_r6vdu")]
+position = Vector2(4891, 68)
+scale = Vector2(30.08798, 27.273167)
+
+[node name="grass17" parent="." unique_id=872748699 instance=ExtResource("4_r6vdu")]
+position = Vector2(5527.834, 258.6825)
+scale = Vector2(10.942221, 11.608482)
+
+[node name="grass18" parent="." unique_id=277371295 instance=ExtResource("4_r6vdu")]
+position = Vector2(5753, 273)
+scale = Vector2(10.942221, 11.608482)
+
+[node name="grass19" parent="." unique_id=1231802767 instance=ExtResource("4_r6vdu")]
+position = Vector2(6101, 397.99997)
+scale = Vector2(10.942221, 11.608482)
+
+[node name="grass20" parent="." unique_id=632213538 instance=ExtResource("4_r6vdu")]
+position = Vector2(6407, 610)
+scale = Vector2(10.942221, 11.608482)
+
+[node name="grass21" parent="." unique_id=1705942536 instance=ExtResource("4_r6vdu")]
+position = Vector2(6981, 432)
+scale = Vector2(10.942221, 11.608482)
+
+[node name="grass22" parent="." unique_id=312779227 instance=ExtResource("4_r6vdu")]
+position = Vector2(964, 904)
+scale = Vector2(10.942221, 11.608482)
